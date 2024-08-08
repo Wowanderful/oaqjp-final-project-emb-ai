@@ -9,14 +9,17 @@ def em_detector():
 
     response = emotion_detector(text_to_analyze)
 
-    list = **response[0]
+    list = response[0]
     dom = response[2]
 
-    return "The given text has been identified as {} with a score of {}.".format(list, dom)
+    if dom == None:
+        return "Invalid text! Please try again!"
+    else: 
+        return "The given text has been identified as {} with a score of {}.".format(list, dom)
 
 @app.route("/")
 def render_index_page():
     return render_template('index.html')
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=5001)
